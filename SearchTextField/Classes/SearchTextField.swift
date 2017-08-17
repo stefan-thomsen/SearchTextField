@@ -379,6 +379,8 @@ open class SearchTextField: UITextField {
                     }
                     
                     filteredResults.append(item)
+                }else{
+                    filteredResults.append(item)
                 }
             } else {
                 var textToFilter = text!.lowercased()
