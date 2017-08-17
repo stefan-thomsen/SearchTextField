@@ -90,9 +90,11 @@ open class SearchTextField: UITextField {
         }
     }
     
+    /// Show all suggestion array
+    open var showAll: Bool = false
+    
     /// Only valid when InlineMode is true. The suggestions appear after typing the provided string (or even better a character like '@')
     open var startFilteringAfter: String?
-    
     
     /// If startFilteringAfter is set, and startSuggestingInmediately is true, the list of suggestions appear inmediately
     open var startSuggestingInmediately = false
@@ -368,7 +370,7 @@ open class SearchTextField: UITextField {
                 let titleFilterRange = (item.title as NSString).range(of: text!, options: comparisonOptions)
                 let subtitleFilterRange = item.subtitle != nil ? (item.subtitle! as NSString).range(of: text!, options: comparisonOptions) : NSMakeRange(NSNotFound, 0)
                 
-                if titleFilterRange.location != NSNotFound || subtitleFilterRange.location != NSNotFound || addAll {
+                if (titleFilterRange.location != NSNotFound || subtitleFilterRange.location != NSNotFound || addAll) || showAll {
                     item.attributedTitle = NSMutableAttributedString(string: item.title)
                     item.attributedSubtitle = NSMutableAttributedString(string: (item.subtitle != nil ? item.subtitle! : ""))
                     
